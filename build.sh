@@ -1,18 +1,15 @@
 #!/bin/bash
 
-# Install dependencies
-echo "Installing requirements..."
-python3 -m pip install --upgrade pip
+echo "Installing dependencies..."
 python3 -m pip install -r requirements.txt
 
-# Run database migrations
 echo "Running migrations..."
 python3 manage.py makemigrations --noinput
 python3 manage.py migrate --noinput
 
-# Collect static files
-echo "Collecting static files..."
+echo "Collecting static files from apps..."
 mkdir -p staticfiles_build
-python3 manage.py collectstatic --noinput --clear --verbosity 0
+python3 manage.py collectstatic --noinput --verbosity 2
 
-echo "Build completed successfully."
+echo "Collected files:"
+ls -la staticfiles_build
