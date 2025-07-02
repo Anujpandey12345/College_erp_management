@@ -5,26 +5,19 @@
             "use": "@vercel/python",
             "config": {
                 "maxLambdaSize": "15mb",
-                "runtime": "python3.11",
-                "includeFiles": "staticfiles_build/static/**",
-                "installCommand": "pip install -r requirements.txt --no-deps"
+                "runtime": "python3.9"
             }
         },
         {
-            "src": "build_files.sh",
+            "src": "build.sh",
             "use": "@vercel/static-build",
             "config": {
-                "distDir": "staticfiles_build/static"
+                "distDir": "staticfiles_build"
             }
         }
     ],
-    "routes": [{
-            "src": "/static/(.*)",
-            "dest": "staticfiles_build/static/$1"
-        },
-        {
-            "src": "/(.*)",
-            "dest": "CodingIndiaErp/wsgi.py"
-        }
+    "routes": [
+        { "src": "/static/(.*)", "dest": "/static/$1" },
+        { "src": "/(.*)", "dest": "CodingIndiaErp/wsgi.py" }
     ]
 }
