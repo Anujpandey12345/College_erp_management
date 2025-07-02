@@ -1,3 +1,4 @@
 *.py text eol=lf
 # Normalize all text files to LF on commit
+
 * text=auto
